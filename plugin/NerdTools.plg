@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
     <!ENTITY name "NerdTools">
     <!ENTITY author "gravityfargo">
-    <!ENTITY version "2024.07.14">
-    <!ENTITY md5 "6d5c8329c6b171a6821f4b24607572a7">
+    <!ENTITY version   "2024.07.14">
+    <!ENTITY md5      "6d5c8329c6b171a6821f4b24607572a7">
     <!ENTITY launch "Settings/NerdTools">
     <!ENTITY github "gravityfargo/unRAID-NerdTools">
     <!ENTITY pluginURL "https://raw.githubusercontent.com/gravityfargo/unRAID-NerdTools/main/plugin/NerdTools.plg">
