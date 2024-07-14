@@ -11,9 +11,9 @@ if (!is_dir($pkg_extra_path))
     mkdir($pkg_extra_path);
     
 
-$pkg_desc = 'https://raw.githubusercontent.com/UnRAIDES/unRAID-NerdTools/main/packages/packages-desc';
-$pkg_repo = "https://api.github.com/repos/UnRAIDES/unRAID-NerdTools/contents/packages/pkgs";
-$pkg_depends = 'https://raw.githubusercontent.com/UnRAIDES/unRAID-NerdTools/main/packages/packages-depends';
+$pkg_desc = 'https://raw.githubusercontent.com/gravityfargo/unRAID-NerdTools/main/packages/packages-desc';
+$pkg_repo = "https://api.github.com/repos/gravityfargo/unRAID-NerdTools/contents/packages/pkgs";
+$pkg_depends = 'https://raw.githubusercontent.com/gravityfargo/unRAID-NerdTools/main/packages/packages-depends';
 
 $desc_file    = $pkg_path.'packages-desc';
 $repo_file    = $pkg_path.'packages.json';
