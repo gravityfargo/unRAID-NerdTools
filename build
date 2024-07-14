@@ -80,7 +80,7 @@ main() {
             clean 1
             ;;
         "-b" | "--build")
-            docker build . -t gravityfargo/slackwarebuilder:0.0.1
+            docker build develop -t gravityfargo/slackwarebuilder:0.0.1
             clean 0
             ;;
         "-d" | "--delete")
@@ -89,9 +89,8 @@ main() {
             ;;
         "-r" | "--run")
             docker run --rm \
-                -v ./archive:/archive \
-                -v ./source:/source \
-                -v ./plugin:/plugin \
+                -v ./archive:/boot/config/archive \
+                -v ./source:/boot/config/plugins \
                 gravityfargo/slackwarebuilder:0.0.1
             clean 0
             ;;
