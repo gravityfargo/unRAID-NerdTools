@@ -2,11 +2,13 @@
     "neofetch": {
         "checksum": "06ec12e87be31c238a224784b61bc588",
         "desc": "neofetch is a script similar to screenfetch. This script can be used to generate any information about your system, it will auto-detect your system and print it to the terminal next to an image, a distro logo or an ASCII art of your choice.",
-        "package_name": "neofetch-20211210_ccd5d9f5-noarch-1.txz"
+        "package_name": "neofetch-20211210_ccd5d9f5-noarch-1.txz",
+        "compressed_size": 88
     },
     "vim": {
         "checksum": "06ec12e87be31c238a224784b61bc588",
         "desc": "Vim is an almost compatible version of the UNIX editor vi. Many new features have been added: multi level undo, command line history, filename completion, block operations, and more. Vim s development is led by Bram Moolenaar. This package also contains the Exuberant Ctags program written by Darren Hiebert.",
-        "package_name": "vim-9.1.0544-x86_64-1.txz"
+        "package_name": "vim-9.1.0544-x86_64-1.txz",
+        "compressed_size": 8744
     }
 }
