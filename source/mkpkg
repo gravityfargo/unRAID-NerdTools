@@ -30,22 +30,24 @@ mkdir -p "${TMP_DIR}/"
 cd "${SRC_DIR}"
 
 cp --parents -f $(find . -type f ! \( -iname "mkpkg" \)) "${TMP_DIR}/"
-cd "$TMP_DIR"
+
 chmod 0755 -R "${TMP_DIR}/"
 chown root:root -R "${TMP_DIR}/"
 
-makepkg "${PACKAGE_FILE}" >/dev/null 2>&1 || echo "Error: makepkg failed" && exit 1
-#     cd "$ARCHIVE/"
-#     md5sum $(basename "$PACKAGE") >"$MD5"
-#     rm -rf "$TMPDIR"
+makepkg "${PACKAGE_FILE}"
 
-#     # Verify and install plugin package
-#     sum1=$(md5sum "${PACKAGE}")
-#     sum2=$(cat "$MD5")
-#     if [ "${sum1:0:32}" != "${sum2:0:32}" ]; then
-#         echo "Checksum mismatched."
-#         rm "$MD5" "${PACKAGE}"
-#     else
-#         echo "Checksum matched."
-#     fi
-# fi
+md5sum "${PACKAGE_FILE}" > "$MD5_PATH"
+
+# Verify and install plugin package
+sum1=$(md5sum "${PACKAGE_FILE}")
+sum2=$(cat "$MD5_PATH")
+
+echo $sum1
+echo $sum2
+
+if [ "${sum1:0:32}" != "${sum2:0:32}" ]; then
+    echo "Checksum mismatched."
+    rm "$MD5_PATH" "${PACKAGE_FILE}"
+else
+    echo "Checksum matched."
+fi
