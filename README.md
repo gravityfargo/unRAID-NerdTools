@@ -1,17 +1,10 @@
-# Abandoned
-**Thanks to all the users who have followed us during this time.**
-
-**Once the new limetech business model was definitively presented and not agreeing with it, we have decided to abandon our collaboration in the development of this project.**
-
-**Best Regards** 
-
 # unRAID-NerdTools
-[![](https://badgen.net/badge/icon/github?icon=github&label)](https://github.com/UnRAIDES)
-[![](https://badgen.net/badge/icon/docker?icon=docker&label)](https://hub.docker.com/r/unraides)
-![Github stars](https://badgen.net/github/stars/UnRAIDES/unRAID-NerdTools?icon=github&label=stars)
-![Github forks](https://badgen.net/github/forks/UnRAIDES/unRAID-NerdTools?icon=github&label=forks)
-![Github last-commit](https://img.shields.io/github/last-commit/UnRAIDES/unRAID-NerdTools)
-![Github license](https://badgen.net/github/license/UnRAIDES/unRAID-NerdTools)
+[![](https://badgen.net/badge/icon/github?icon=github&label)](https://github.com/gravityfargo)
+[![](https://badgen.net/badge/icon/docker?icon=docker&label)](https://hub.docker.com/r/gravityfargo)
+![Github stars](https://badgen.net/github/stars/gravityfargo/unRAID-NerdTools?icon=github&label=stars)
+![Github forks](https://badgen.net/github/forks/gravityfargo/unRAID-NerdTools?icon=github&label=forks)
+![Github last-commit](https://img.shields.io/github/last-commit/gravityfargo/unRAID-NerdTools)
+![Github license](https://badgen.net/github/license/gravityfargo/unRAID-NerdTools)
 
 ![](images/logo.png)
 
