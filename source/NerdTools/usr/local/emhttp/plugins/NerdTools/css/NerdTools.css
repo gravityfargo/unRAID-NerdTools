@@ -1,0 +1,27 @@
+.package {
+    cursor: pointer;
+}
+#package_form {
+    margin-top: -10px;
+}
+.switch-button-label.off {
+    color: inherit;
+}
+.uptodate {
+    color:#44B012;
+    white-space:nowrap;
+}
+.updateready, .update {
+    white-space:nowrap;
+    cursor: pointer;
+}
+.uninstalled, .installed {
+    white-space:nowrap;
+    cursor: inherit;
+}
+table.tablesorter tbody td.wrapper  {
+    white-space: nowrap;
+}
+table.tablesorter .checked  {
+    width: 90px;
+}

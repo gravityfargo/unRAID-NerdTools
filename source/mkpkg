@@ -1,0 +1,56 @@
+#!/bin/bash
+NAME=NerdTools
+TMP_DIR=/${NAME}-temp
+PLUGIN_DIR="/plugin"
+ARCHIVE_DIR="/archive"
+VERSION=$(date +"%Y.%m.%d")
+PACKAGE_NAME="${NAME}-${VERSION}-x86_64-1"
+
+SRC_DIR=/source
+DEST_DIR="$TMP_DIR/usr/local/emhttp/plugins/${NAME}"
+PLG_FILE="${PLUGIN_DIR}/${NAME}.plg"
+PACKAGE_FILE="${ARCHIVE_DIR}/${PACKAGE_NAME}.txz"
+MD5_PATH="${ARCHIVE_DIR}/${PACKAGE_NAME}.md5"
+
+echo "NAME: $NAME"
+echo "TMP_DIR: $TMP_DIR"
+echo "PLUGIN_DIR: $PLUGIN_DIR"
+echo "ARCHIVE_DIR: $ARCHIVE_DIR"
+echo "VERSION: $VERSION"
+echo "PACKAGE_NAME: $PACKAGE_NAME"
+echo
+echo "DEST_DIR: $DEST_DIR"
+echo "PLG_FILE: $PLG_FILE"
+echo "PACKAGE_FILE: $PACKAGE_FILE"
+echo "MD5_PATH: $MD5_PATH"
+
+mkdir -p $TMP_DIR
+cd $SRC_DIR
+
+cp --parents -f $(find . -type f ! \( -iname "mkpkg" \)) $TMP_DIR
+
+chmod 0755 -R $TMP_DIR
+chown root:root -R $TMP_DIR
+
+makepkg $PACKAGE_FILE
+md5sum $PACKAGE_FILE >$MD5_PATH
+
+chown 1000:1000 $PACKAGE_FILE
+chown 1000:1000 $MD5_PATH
+
+
+R_HASH=$(cat $MD5_PATH)
+TR_HASH="${R_HASH%% *}"
+
+C_HASH=$(md5sum $PACKAGE_FILE)
+TC_HASH="${C_HASH%% *}"
+
+echo "Hash in .md5: $TR_HASH"
+echo "Hash of .txz: $TC_HASH"
+
+if [ "${TR_HASH}" != "${TC_HASH}" ]; then
+    echo "Checksum mismatched."
+    exit 1
+else
+    echo "Checksum matched."
+fi
