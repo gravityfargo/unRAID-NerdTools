@@ -63,8 +63,8 @@ update_plg() {
         echo "Checksum matched."
     fi
 
-    sed -i "s/    <!ENTITY version.*/    <!ENTITY version \"$VERSION\">"/ plugin/NerdTools.plg
-    sed -i "s/    <!ENTITY md5.*/    <!ENTITY md5 \"$TC_HASH\">"/ plugin/NerdTools.plg
+    sed -i "s/<!ENTITY version.*/<!ENTITY version   \"$VERSION\">"/ plugin/NerdTools.plg
+    sed -i "s/<!ENTITY md5.*/<!ENTITY md5      \"$TC_HASH\">"/ plugin/NerdTools.plg
 
     echo "Remember to update the changelog."
 

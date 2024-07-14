@@ -1,320 +1,327 @@
 <?xml version='1.0' standalone='yes'?>
+
 <!DOCTYPE PLUGIN [
-<!ENTITY name "NerdTools">
-<!ENTITY author "gravityfargo">
-<!ENTITY version "2024.07.14">
-<!ENTITY md5 "6d5c8329c6b171a6821f4b24607572a7">
-<!ENTITY launch "Settings/&name;">
-<!ENTITY github "gravityfargo/unRAID-&name;">
+<!ENTITY name      "NerdTools">
+<!ENTITY author    "gravityfargo">
+<!ENTITY version   "2024.07.14">
+<!ENTITY md5       "6d5c8329c6b171a6821f4b24607572a7">
+<!ENTITY launch    "Settings/&name;">
+<!ENTITY github    "gravityfargo/unRAID-&name;">
 <!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/main/plugin/&name;.plg">
-<!ENTITY plgPATH "/boot/config/plugins/&name;">
-<!ENTITY plgNAME "&name;-&version;-x86_64-1">
-<!ENTITY emhttp "/usr/local/emhttp/plugins/&name;">
+<!ENTITY plgPATH   "/boot/config/plugins/&name;">
+<!ENTITY plgNAME   "&name;-&version;-x86_64-1">
+<!ENTITY emhttp    "/usr/local/emhttp/plugins/&name;">
 ]>
 
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" min="6.11">
 
-<CHANGES>
-    ###2024.07.14
-    - Updated: migrated to gravityfargo's repo
-    - Added: ffmpeg-6.1.1-x86_64-4
-    ###2024.02.17
-    - Removed: nvme-cli-2023.11.25 package added by UnRAID on version 6.12.8
-    - Enhanced: clean packages-desc file
-    - Updated: libmediainfo-24.01-1
-    - Updated: mediainfo-24.01-1
-    - Updated: powershell-7.4.1-1
-    - Rebuild: rar2fs-1.29.6-3 fix error with dependency
-    ###2024.02.08
-    - Updated: exiftool-12.76-1
-    - Updated: fzf-0.46.1-1
-    - Updated: nodejs-20.11.0-1
-    - Added: cksfv-1.3.14-1 (Issues #113)
-    ###2024.02.05
-    - Fixed: Improved handling of package names and versions
-    - Removed: Delete ncurses-terminfo dependencies of tmux isn't necesary
-    ###2024.02.04
-    - Fixed: package nvme-cli added original version, the rename not work
-    - Fixed: rollback python-pip-21.3.1-2 (added stable version)
-    - Updated: rebuild iotop-0.6-3
-    - Removed: libffi-3.3-3 (We are sorry but we only add official packages from the stable
-    version and they do not interfere with the packages installed by limetech.)
-    ###2024.01.27
-    - Fixed: rollback lftp-4.9.2-3
-    - Added: fio-3.36-1
-    - Added: sshpass-1.06-1
-    - Added: nvme-cli-2.6 (Thank you to @SimonF)
-    - Added: libffi-3.3-3 (First of all you must remove libffi-3.4.4 at your own risk with
-    removepkg libffi-3.4.4)
-    - Updated: rclone-1.65.1-1
-    - Updated: fish-3.7.0-1
-    - Updated: libmediainfo-23.11-1
-    - Updated: mediainfo-23.11-1
-    - Updated: restic-0.16.3-1
-    - Updated: unrar-6.2.12-1
-    ###2024.01.07
-    - Added: nmap-7.92-1 (Issues #44)
-    - Added: libnl-1.1.4-5 as dependency of nmap
-    - Added: stunnel-5.62-1 (Issues #93)
-    - Added: tcpdump-4.99.1-1 (Issues #92)
-    - Added: socat-1.7.4.3-1 (Issues #68)
-    - Added: par2cmdline-0.8.1-1 (Issues #29)
-    - Added: bwm-ng-0.6.3-2 (Issues #29)
-    - Added: autossh-1.4g-1 (Issues #40)
-    - Added: netcat-0.7.1-1 (Issues #89)
-    - Added: audit-3.0.7-2 (Issues #88)
-    - Added: stress-1.0.4-1 (Issues #90)
-    ###2024.01.06b
-    - Fixed: A error when uninstall NerdTools plugin
-    - Fixed: rollback utf8proc-2.7.0-1 by error with glibc-2.8 version request
-    - Fixed: rollback irssi-1.4.4-1 by error with glibc-2.8 version request
-    - Fixed: rollback gpgme-1.16.0-3 by error with glibc-2.8 version request
-    - Fixed: rollback wget2-2.0.0-2 by error with glibc-2.8 version request
-    - Fixed: rollback libsodium-1.0.18-3 by error with glibc-2.8 version request
-    - Fixed: rollback vim-9.0.2127-1 by error with glibc-2.8 version request
-    ###2024.01.06
-    - Updated: irssi-1.4.5-2
-    - Updated: vim-9.1.0-1
-    - Updated: libsodium-1.0.19-1
-    - Updated: utf8proc-2.9.0-1
-    - Updated: gpgme-1.23.2-1
-    - Updated: lftp-4.9.2-4
-    - Updated: libassuan-2.5.6-1
-    - Updated: liburing-2.5-1
-    - Updated: python3-3.9.18-1
-    - Updated: ruby-3.3.0-1
-    - Updated: borgbackup-1.2.7-1
-    - Updated: exiftool-12.70-1
-    - Updated: fdupes-1.6.1-1
-    - Updated: fish-3.6.4-1
-    - Updated: libjodycode-3.1-1
-    - Updated: jdupes-1.27.3-1
-    - Updated: wget2-2.1.0-1
-    - Updated: screen-4.9.1-1
-    - Updated: rclone-1.65.0-1
-    - Updated: restic-0.16.2-1
-    - Updated: powershell-7.4.0-1
-    - Updated: neofetch-20211210-1
-    - Updated: rar-6.24-1
-    - Updated: fzf-0.45.0-1
-    - Rebuild: mktorrent-1.1_de7d011-1
-    - Rebuild: ncdu-1.17-1
-    - Rebuild: nload-0.7.4-1
-    - Rebuild: p7zip-17.04-1
-    - Added: bluez-5.71-2 (Issues #97)
-    - Added: aria2-1.37.0-1 (Issues #99)
-    ###2023.08.09
-    - Removed: libffi-3.4.4 package added by UnRAID
-    - Removed: lzlib-1.13 package added by UnRAID
-    - Added: plocate-1.1.19 (Issues #85)
-    - Added: liburing-2.4 as dependency of plocate
-    - Added: gnupg2-2.4.3
-    - Added: npth-1.6 as dependency of gnupg2
-    ###2023.07.20
-    - Fixed: rollback python3-3.9.16 for fix SSL problem
-    ###2023.07.18
-    - Updated: vim-9.0.1672
-    - Updated: python3-3.9.17
-    - Updated: unrar-6.1.7 rename for work with rar2fs
-    - Added: rar2fs-1.29.6
-    - Enhanced: Rename update button for clearer text
-    ###2023.06.07
-    - Enhanced: remove old packages when upgrading
-    ###2023.05.15
-    - Enhanced: PHP8 optimization
-    - Enhanced: autoinstall of the dependencies
-    - Added: rclone-1.62.2
-    - Added: libjodycode-2.0.1 as dependency of jdupes
-    - Added: fish-3.6.1 (Issues #59)
-    - Updated: exiftool-12.60
-    - Updated: jdupes-1.23.0
-    - Updated: libmediainfo-23.04
-    - Updated: libzen-0.4.41
-    - Updated: mediainfo-23.04
-    - Updated: powershell-7.3.4
-    ###2023.05.14
-    - Updated: gpgme-1.20.0
-    - Updated: irssi-1.4.4
-    - Updated: ruby-3.2.2
-    - Updated: vim-9.0.1493
-    - Added: Nodejs-20.1.0
-    - Fixed: rollback python3-3.9.16 to release 1 that fix SSL problem (Issues #74)
-    - Enhanced: Add python-pip and python-setuptools as dependency of python3
-    ###2023.05.07
-    - Enhanced: add dependencies column
-    - Enhanced: rearrange multiple columns
-    - Enhanced: delete DOWNLOADED column
-    ###2023.05.04
-    - Enhanced: improvements in the treatment of dependencies
-    - Added: python-packaging-21.3 as dependency of borgbackup
-    ###2023.05.02
-    - Updated: borgbackup-1.2.4
-    - Updated: python3-3.9.16-3
-    - Added: msgpack-python-1.0.5 as dependency of borgbackup
-    ###2023.04.24
-    - Enhanced: improvements in package installation
-    ###2023.03.30
-    - Enhanced: change category of the plugin (PR #50)
-    ###2023.03.29
-    - Added: ruby-3.2.1 (PR #36)
-    - Added: btop-1.2.13 (PR #51)
-    - Added: restic-0.15.1 (PR #52)
-    - Updated: vim-9.0.1418
-    ###2023.03.11
-    - Fixed: dependency improvements
-    ###2023.03.06
-    - Fixed: fixed PHP deprecated
-    ###2023.03.05b
-    - Initial 6.12 compatibility
-    - Fixed: added some missing package descriptions
-    ###2023.03.05
-    - Updated: ddrescue-1.27
-    - Updated: gpgme-1.18.0
-    - Updated: irssi-1.4.3
-    - Updated: powertop-2.15
-    - Updated: python-pip-22.2.2
-    - Updated: python-setuptools-65.1.1
-    - Updated: python2-2.7.18-5
-    - Updated: python3-3.9.16
-    - Updated: sshfs-3.7.3
-    - Updated: tcl-8.6.13
-    - Updated: tmux-3.3a
-    - Updated: utf8proc-2.8.0
-    - Updated: vim-9.0.1362
-    - Updated: wget2-2.0.1
-    - Updated: zsh-5.9
-    - Added: libffi-3.4.4 as dependency of iotop (Issues #37)
-    ###2022.11.01
-    - Fixed: Removepkg Fixed packages
-    ###2022.10.24
-    - Added: wget2-2.0.0
-    - Added: gpgme-1.16.0 as dependency of wget2
-    - Added: lzlib-1.13 as dependency of wget2
-    - Added: libassuan-2.5.5 as dependency of wget2
-    - Added: bc-1.07
-    - Added: tcl-8.6.12
-    - Added: tcllib-1.21
-    - Added: powershell-7.2.7
-    ###2022.10.19
-    - Added: ipmitool-1.8.18
-    - Added: mlocate-0.26
-    - Added: pigz-2.7
-    - Added: sshfs-3.7.2
-    ###2022.10.10
-    - Changed: axel-2.17.11
-    - Added: ddrescue-1.26
-    - Added: exiftool-12.47
-    - Added: iftop-1.0pre4
-    - Added: iotop-0.6
-    - Added: lftp-4.9.2
-    - Added: llfuse-1.4.2 as dependency of borgbackup
-    - Added: powertop-2.13
-    - Changed: python-setuptools-57.5.0
-    - Added: rsnapshot-1.4.4
-    ###2022.10.09
-    - Fixed: Reinstall packages
-    ###2022.10.08
-    - Fixed: The plugins column is changed by the current version
-    - Fixed: The functionality to compare old versions is updated
-    ###2022.10.05
-    - Fixed: Remove packages on uninstalling plugin
-    ###2022.10.04d
-    - Fixed: Dependency for mediainfo package
-    - Added: vim-9.0.0623 package
-    - Added: libsodium-1.0.18 as dependency of vim
-    - Changed: jdupes-1.21
-    ###2022.10.04c
-    - Fixed: Bug with json file
-    ###2022.10.04b
-    - Fixed: Minor change for developer tools
-    ###2022.10.04a
-    - Fixed: Clean old code
-    - Enhanced: Delete old packages
-    - Changed: unrar6.12
-    - Changed: uar-6.12
-    - Changed: p7zip-17.04
-    - Changed: mediainfo-22.06
-    - Changed: libzen-0.4.39
-    - Changed: libmediainfo-22.06 as dependency of mediainfo
-    ###2022.10.04
-    - Initial release
-    - Plugin based on NerdPack of dmacias72
-    - Cleaned code and deleted packages unused that are include on UnRAID 6.11
-    - New system for install packages
-</CHANGES>
+  <CHANGES>
+##&name;
+###2024.02.17
+- Removed: nvme-cli-2023.11.25 package added by UnRAID on version 6.12.8
+- Enhanced: clean packages-desc file
+###2024.02.17
+- Removed: nvme-cli-2023.11.25 package added by UnRAID on version 6.12.8
+- Enhanced: clean packages-desc file
+- Updated: libmediainfo-24.01-1
+- Updated: mediainfo-24.01-1
+- Updated: powershell-7.4.1-1
+- Rebuild: rar2fs-1.29.6-3 fix error with dependency
+###2024.02.08
+- Updated: exiftool-12.76-1
+- Updated: fzf-0.46.1-1
+- Updated: nodejs-20.11.0-1
+- Added: cksfv-1.3.14-1 (Issues #113)
+###2024.02.05
+- Fixed: Improved handling of package names and versions
+- Removed: Delete ncurses-terminfo dependencies of tmux isn't necesary
+###2024.02.04
+- Fixed: package nvme-cli added original version, the rename not work
+- Fixed: rollback python-pip-21.3.1-2 (added stable version)
+- Updated: rebuild iotop-0.6-3
+- Removed: libffi-3.3-3 (We are sorry but we only add official packages from the stable version and they do not interfere with the packages installed by limetech.)
+###2024.01.27
+- Fixed: rollback lftp-4.9.2-3
+- Added: fio-3.36-1
+- Added: sshpass-1.06-1
+- Added: nvme-cli-2.6 (Thank you to @SimonF)
+- Added: libffi-3.3-3 (First of all you must remove libffi-3.4.4 at your own risk with removepkg libffi-3.4.4)
+- Updated: rclone-1.65.1-1
+- Updated: fish-3.7.0-1
+- Updated: libmediainfo-23.11-1
+- Updated: mediainfo-23.11-1
+- Updated: restic-0.16.3-1
+- Updated: unrar-6.2.12-1
+###2024.01.07
+- Added: nmap-7.92-1 (Issues #44)
+- Added: libnl-1.1.4-5 as dependency of nmap 
+- Added: stunnel-5.62-1 (Issues #93)
+- Added: tcpdump-4.99.1-1 (Issues #92)
+- Added: socat-1.7.4.3-1 (Issues #68)
+- Added: par2cmdline-0.8.1-1 (Issues #29)
+- Added: bwm-ng-0.6.3-2 (Issues #29)
+- Added: autossh-1.4g-1 (Issues #40)
+- Added: netcat-0.7.1-1 (Issues #89)
+- Added: audit-3.0.7-2 (Issues #88)
+- Added: stress-1.0.4-1 (Issues #90)
+###2024.01.06b
+- Fixed: A error when uninstall NerdTools plugin
+- Fixed: rollback utf8proc-2.7.0-1 by error with glibc-2.8 version request
+- Fixed: rollback irssi-1.4.4-1 by error with glibc-2.8 version request
+- Fixed: rollback gpgme-1.16.0-3 by error with glibc-2.8 version request
+- Fixed: rollback wget2-2.0.0-2 by error with glibc-2.8 version request
+- Fixed: rollback libsodium-1.0.18-3 by error with glibc-2.8 version request
+- Fixed: rollback vim-9.0.2127-1 by error with glibc-2.8 version request
+###2024.01.06
+- Updated: irssi-1.4.5-2
+- Updated: vim-9.1.0-1
+- Updated: libsodium-1.0.19-1
+- Updated: utf8proc-2.9.0-1
+- Updated: gpgme-1.23.2-1
+- Updated: lftp-4.9.2-4
+- Updated: libassuan-2.5.6-1
+- Updated: liburing-2.5-1
+- Updated: python3-3.9.18-1
+- Updated: ruby-3.3.0-1
+- Updated: borgbackup-1.2.7-1
+- Updated: exiftool-12.70-1
+- Updated: fdupes-1.6.1-1
+- Updated: fish-3.6.4-1
+- Updated: libjodycode-3.1-1
+- Updated: jdupes-1.27.3-1
+- Updated: wget2-2.1.0-1
+- Updated: screen-4.9.1-1
+- Updated: rclone-1.65.0-1
+- Updated: restic-0.16.2-1
+- Updated: powershell-7.4.0-1
+- Updated: neofetch-20211210-1
+- Updated: rar-6.24-1
+- Updated: fzf-0.45.0-1
+- Rebuild: mktorrent-1.1_de7d011-1
+- Rebuild: ncdu-1.17-1
+- Rebuild: nload-0.7.4-1
+- Rebuild: p7zip-17.04-1
+- Added: bluez-5.71-2 (Issues #97)
+- Added: aria2-1.37.0-1 (Issues #99)
+###2023.08.09
+- Removed: libffi-3.4.4 package added by UnRAID
+- Removed: lzlib-1.13 package added by UnRAID
+- Added: plocate-1.1.19 (Issues #85)
+- Added: liburing-2.4 as dependency of plocate
+- Added: gnupg2-2.4.3
+- Added: npth-1.6 as dependency of gnupg2
+###2023.07.20
+- Fixed: rollback python3-3.9.16 for fix SSL problem
+###2023.07.18
+- Updated: vim-9.0.1672
+- Updated: python3-3.9.17
+- Updated: unrar-6.1.7 rename for work with rar2fs
+- Added: rar2fs-1.29.6
+- Enhanced: Rename update button for clearer text
+###2023.06.07
+- Enhanced: remove old packages when upgrading
+###2023.05.15
+- Enhanced: PHP8 optimization
+- Enhanced: autoinstall of the dependencies
+- Added: rclone-1.62.2
+- Added: libjodycode-2.0.1 as dependency of jdupes
+- Added: fish-3.6.1 (Issues #59)
+- Updated: exiftool-12.60
+- Updated: jdupes-1.23.0
+- Updated: libmediainfo-23.04
+- Updated: libzen-0.4.41
+- Updated: mediainfo-23.04
+- Updated: powershell-7.3.4
+###2023.05.14
+- Updated: gpgme-1.20.0
+- Updated: irssi-1.4.4
+- Updated: ruby-3.2.2
+- Updated: vim-9.0.1493
+- Added: Nodejs-20.1.0
+- Fixed: rollback python3-3.9.16 to release 1 that fix SSL problem (Issues #74)
+- Enhanced: Add python-pip and python-setuptools as dependency of python3
+###2023.05.07
+- Enhanced: add dependencies column
+- Enhanced: rearrange multiple columns
+- Enhanced: delete DOWNLOADED column
+###2023.05.04
+- Enhanced: improvements in the treatment of dependencies
+- Added: python-packaging-21.3 as dependency of borgbackup
+###2023.05.02
+- Updated: borgbackup-1.2.4
+- Updated: python3-3.9.16-3
+- Added: msgpack-python-1.0.5 as dependency of borgbackup
+###2023.04.24
+- Enhanced: improvements in package installation
+###2023.03.30
+- Enhanced: change category of the plugin (PR #50)
+###2023.03.29
+- Added: ruby-3.2.1 (PR #36)
+- Added: btop-1.2.13 (PR #51)
+- Added: restic-0.15.1 (PR #52)
+- Updated: vim-9.0.1418 
+###2023.03.11
+- Fixed: dependency improvements
+###2023.03.06
+- Fixed: fixed PHP deprecated
+###2023.03.05b
+- Initial 6.12 compatibility
+- Fixed: added some missing package descriptions
+###2023.03.05
+- Updated: ddrescue-1.27
+- Updated: gpgme-1.18.0
+- Updated: irssi-1.4.3
+- Updated: powertop-2.15
+- Updated: python-pip-22.2.2
+- Updated: python-setuptools-65.1.1
+- Updated: python2-2.7.18-5
+- Updated: python3-3.9.16
+- Updated: sshfs-3.7.3
+- Updated: tcl-8.6.13
+- Updated: tmux-3.3a
+- Updated: utf8proc-2.8.0
+- Updated: vim-9.0.1362
+- Updated: wget2-2.0.1
+- Updated: zsh-5.9
+- Added: libffi-3.4.4 as dependency of iotop (Issues #37)
+###2022.11.01
+- Fixed: Removepkg Fixed packages
+###2022.10.24
+- Added: wget2-2.0.0
+- Added: gpgme-1.16.0 as dependency of wget2
+- Added: lzlib-1.13 as dependency of wget2
+- Added: libassuan-2.5.5 as dependency of wget2
+- Added: bc-1.07
+- Added: tcl-8.6.12
+- Added: tcllib-1.21
+- Added: powershell-7.2.7
+###2022.10.19
+- Added: ipmitool-1.8.18
+- Added: mlocate-0.26
+- Added: pigz-2.7
+- Added: sshfs-3.7.2
+###2022.10.10
+- Changed: axel-2.17.11
+- Added: ddrescue-1.26
+- Added: exiftool-12.47
+- Added: iftop-1.0pre4
+- Added: iotop-0.6
+- Added: lftp-4.9.2
+- Added: llfuse-1.4.2 as dependency of borgbackup
+- Added: powertop-2.13
+- Changed: python-setuptools-57.5.0
+- Added: rsnapshot-1.4.4
+###2022.10.09
+- Fixed: Reinstall packages
+###2022.10.08
+- Fixed: The plugins column is changed by the current version
+- Fixed: The functionality to compare old versions is updated
+###2022.10.05
+- Fixed: Remove packages on uninstalling plugin
+###2022.10.04d
+- Fixed: Dependency for mediainfo package
+- Added: vim-9.0.0623 package
+- Added: libsodium-1.0.18 as dependency of vim
+- Changed: jdupes-1.21
+###2022.10.04c
+- Fixed: Bug with json file
+###2022.10.04b
+- Fixed: Minor change for developer tools
+###2022.10.04a
+- Fixed: Clean old code
+- Enhanced: Delete old packages
+- Changed: unrar6.12
+- Changed: uar-6.12
+- Changed: p7zip-17.04
+- Changed: mediainfo-22.06
+- Changed: libzen-0.4.39
+- Changed: libmediainfo-22.06 as dependency of mediainfo
+###2022.10.04
+- Initial release
+- Plugin based on NerdPack of dmacias72
+- Cleaned code and deleted packages unused that are include on UnRAID 6.11
+- New system for install packages
 
-    <!-- The 'pre-install' script. -->
-<FILE Run="/usr/bin/php">
-<INLINE>
-    <![CDATA[
-        <?
-            $version = parse_ini_file("/etc/unraid-version");
-            
-            if ( version_compare($version['version'],"6.11", "<") )
-            {
-                echo "**********************************************************************\n";
-                echo "\n";
-                echo "NerdTools Requires Unraid version 6.11.0 or greater to run\n";
-                echo "\n";
-                echo "**********************************************************************\n";
-                exit(1);
-            }
-        ?>
-    ]]>
-</INLINE>
-</FILE>
+  </CHANGES>
 
-<FILE Run="/bin/bash">
-<INLINE>
-    # Remove old 'source' files
-    rm -f $(ls /boot/config/plugins/&name;/&name;*.txz 2>/dev/null &#124; grep -v
-    '&version;')
-</INLINE>
-</FILE>
+  <!-- The 'pre-install' script. -->
+  <FILE Run="/usr/bin/php">
+    <INLINE>
+      <![CDATA[
+<?
+  $version = parse_ini_file("/etc/unraid-version");
+  
+  if ( version_compare($version['version'],"6.11", "<") )
+  {
+    echo "**********************************************************************\n";
+    echo "\n";
+    echo "NerdTools Requires Unraid version 6.11.0 or greater to run\n";
+    echo "\n";
+    echo "**********************************************************************\n";
+    exit(1);
+  }
+	
+?>
+]]>
+    </INLINE>
+  </FILE>
 
-
-<!-- The 'install' script. -->
-<FILE Run="/bin/bash" Method="install">
-<INLINE>
-    echo ""
-    echo "-----------------------------------------------------------"
-    echo " &name; has been installed."
-    echo ""
-    echo " Copyright 2024, &author;"
-    echo " Based on NerdPack"
-    echo " Version: &version;"
-    echo "-----------------------------------------------------------"
-    echo ""
-</INLINE>
-</FILE>
+  <FILE Run="/bin/bash">
+    <INLINE>
+# Remove old 'source' files
+rm -f $(ls /boot/config/plugins/&name;/&name;*.txz 2>/dev/null &#124; grep -v '&version;')
+    </INLINE>
+  </FILE>
 
 
-<FILE Name="/boot/config/plugins/&name;/&name;-&version;-x86_64-1.txz" Run="upgradepkg --install-new --reinstall">
-<URL>
-    https://raw.githubusercontent.com/gravityfargo/unRAID-&name;/main/archive/&name;-&version;-x86_64-1.txz</URL>
-<MD5>&md5;</MD5>
-</FILE>
 
-    <!-- The 'remove' script. -->
-<FILE Run="/bin/bash" Method="remove">
-<INLINE>
-    removepkg &plgPATH;/&plgNAME;.txz
-    rm -rf &emhttp;
-    rm -f &plgPATH;/&plgNAME;.txz
+  <!--
+The 'install' script.
+-->
+  <FILE Run="/bin/bash" Method="install">
+    <INLINE>
 
-    removepkg /boot/extra/*_nerdtools.txz 1>/dev/null
-    rm -f /boot/extra/*_nerdtools.txz 1>/dev/null
-    rm -f /boot/config/plugins/NerdTools 1>/dev/null
+echo ""
+echo "-----------------------------------------------------------"
+echo " &name; has been installed."
+echo ""
+echo " Copyright 2024, &author;"
+echo " Based on NerdPack"
+echo " Version: &version;"
+echo "-----------------------------------------------------------"
+echo ""
+    </INLINE>
+  </FILE>
 
-    echo ""
-    echo "-----------------------------------------------------------"
-    echo " &name; has been removed."
-    echo " Copyright 2024, &author;"
-    echo " Based on NerdPack"
-    echo " Version: &version;"
-    echo "-----------------------------------------------------------"
-    echo ""
-</INLINE>
-</FILE>
+
+  <FILE Name="/boot/config/plugins/&name;/&name;-&version;-x86_64-1.txz" Run="upgradepkg --install-new --reinstall">
+    <URL>https://raw.githubusercontent.com/gravityfargo/unRAID-&name;/main/archive/&name;-&version;-x86_64-1.txz</URL>
+    <MD5>&md5;</MD5>
+  </FILE>
+
+  <!--
+The 'remove' script.
+-->
+  <FILE Run="/bin/bash" Method="remove">
+    <INLINE>
+
+removepkg &plgPATH;/&plgNAME;.txz
+rm -rf &emhttp;
+rm -f &plgPATH;/&plgNAME;.txz
+
+removepkg /boot/extra/*_nerdtools.txz 1>/dev/null
+rm -f /boot/extra/*_nerdtools.txz 1>/dev/null
+rm -f /boot/config/plugins/NerdTools 1>/dev/null
+
+echo ""
+echo "-----------------------------------------------------------"
+echo " &name; has been removed."
+echo " Copyright 2024, &author;"
+echo " Based on NerdPack"		
+echo " Version: &version;"
+echo "-----------------------------------------------------------"
+echo ""
+    </INLINE>
+  </FILE>
 
 </PLUGIN>
