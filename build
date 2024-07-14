@@ -20,11 +20,54 @@ help() {
 }
 
 ##############################################################################
-# Everything in this block runs in the container
 
-build() {
-    cd source/NerdTools
-    ./pkg_build.sh $1
+delete_last() {
+    LATEST_MD5=$(find archive/ -type f -name "*.md5" -exec ls -t {} + | head -n 1)
+    LATEST_TXZ=$(find archive/ -type f -name "*.txz" -exec ls -t {} + | head -n 1)
+    FILE_NAME=$(basename "${LATEST_MD5}")
+    VERSION=$(echo "$FILE_NAME" | awk 'match($0, /[0-9]{4}\.[0-9]{2}\.[0-9]{2}/) { print substr($0, RSTART, RLENGTH) }')
+    DATE=$(date +"%Y.%m.%d")
+    if [ "$VERSION" == "$DATE" ]; then
+        echo "Deleting $LATEST_MD5"
+        rm $LATEST_MD5
+        echo "Deleting $LATEST_TXZ"
+        rm $LATEST_TXZ
+        sed -i "s/    <!ENTITY version.*/    <!ENTITY version \"\">"/1 plugin/NerdTools.plg
+        sed -i "s/    <!ENTITY md5.*/    <!ENTITY md5 \"\">"/1 plugin/NerdTools.plg
+    else
+        echo "No files to delete."
+    fi
+}
+
+update_plg() {
+    LATEST_MD5=$(find archive/ -type f -name "*.md5" -exec ls -t {} + | head -n 1)
+    LATEST_TXZ=$(find archive/ -type f -name "*.txz" -exec ls -t {} + | head -n 1)
+
+    FILE_NAME=$(basename "${LATEST_MD5}")
+    VERSION=$(echo "$FILE_NAME" | awk 'match($0, /[0-9]{4}\.[0-9]{2}\.[0-9]{2}/) { print substr($0, RSTART, RLENGTH) }')
+    R_HASH=$(cat $LATEST_MD5)
+    TR_HASH="${R_HASH%% *}"
+
+    C_HASH=$(md5sum $LATEST_TXZ)
+    TC_HASH="${C_HASH%% *}"
+
+    echo $FILE_NAME
+    echo "Version: $VERSION"
+    echo "Hash in .md5: $TR_HASH"
+    echo "Hash of .txz: $TC_HASH"
+
+    if [ "${TR_HASH}" != "${TC_HASH}" ]; then
+        echo "Checksum mismatched."
+        exit 1
+    else
+        echo "Checksum matched."
+    fi
+
+    sed -i "s/    <!ENTITY version.*/    <!ENTITY version \"$VERSION\">"/ plugin/NerdTools.plg
+    sed -i "s/    <!ENTITY md5.*/    <!ENTITY md5 \"$TC_HASH\">"/ plugin/NerdTools.plg
+
+    echo "Remember to update the changelog."
+
 }
 
 ##############################################################################
@@ -36,16 +79,24 @@ main() {
             help
             clean 1
             ;;
-        "-bd" | "--build-docker")
+        "-b" | "--build")
             docker build . -t gravityfargo/slackwarebuilder:0.0.1
             clean 0
             ;;
-        "-rd" | "--run-docker")
+        "-d" | "--delete")
+            delete_last
+            clean 0
+            ;;
+        "-r" | "--run")
             docker run --rm \
                 -v ./archive:/archive \
                 -v ./source:/source \
                 -v ./plugin:/plugin \
                 gravityfargo/slackwarebuilder:0.0.1
+            clean 0
+            ;;
+        "-u" | "--update-plg")
+            update_plg
             clean 0
             ;;
         *)
@@ -58,17 +109,3 @@ main() {
 
 export DOCKER_BUILDKIT=1
 main "$@"
-
-
-# version=$(date +"%Y.%m.%d")$1
-
-# echo "VERSION: $version"
-
-# echo "${BASH_SOURCE[0]}"
-
-# # CALCULATE MD5
-# md5=($(md5sum ${BASEDIR}/archive/NerdTools-${version}-x86_64-1.txz))
-# echo ${md5}
-
-# sed -i "s/ENTITY version   .*/ENTITY version   \"$version\">"/ "$BASEDIR/plugin/NerdTools.plg"
-# sed -i "s/ENTITY md5       .*/ENTITY md5       \"$md5\">"/ "$BASEDIR/plugin/NerdTools.plg"

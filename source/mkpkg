@@ -24,30 +24,33 @@ echo "PLG_FILE: $PLG_FILE"
 echo "PACKAGE_FILE: $PACKAGE_FILE"
 echo "MD5_PATH: $MD5_PATH"
 
-# sed -i -e "s#\(ENTITY\s*version[^\"]*\).*#\1\"${VERSION}\">#" "$PLG_FILE"
+mkdir -p $TMP_DIR
+cd $SRC_DIR
 
-mkdir -p "${TMP_DIR}/"
-cd "${SRC_DIR}"
+cp --parents -f $(find . -type f ! \( -iname "mkpkg" \)) $TMP_DIR
 
-cp --parents -f $(find . -type f ! \( -iname "mkpkg" \)) "${TMP_DIR}/"
+chmod 0755 -R $TMP_DIR
+chown root:root -R $TMP_DIR
 
-chmod 0755 -R "${TMP_DIR}/"
-chown root:root -R "${TMP_DIR}/"
+makepkg $PACKAGE_FILE
+md5sum $PACKAGE_FILE >$MD5_PATH
 
-makepkg "${PACKAGE_FILE}"
+chown 1000:1000 $PACKAGE_FILE
+chown 1000:1000 $MD5_PATH
 
-md5sum "${PACKAGE_FILE}" > "$MD5_PATH"
 
-# Verify and install plugin package
-sum1=$(md5sum "${PACKAGE_FILE}")
-sum2=$(cat "$MD5_PATH")
+R_HASH=$(cat $MD5_PATH)
+TR_HASH="${R_HASH%% *}"
 
-echo $sum1
-echo $sum2
+C_HASH=$(md5sum $PACKAGE_FILE)
+TC_HASH="${C_HASH%% *}"
 
-if [ "${sum1:0:32}" != "${sum2:0:32}" ]; then
+echo "Hash in .md5: $TR_HASH"
+echo "Hash of .txz: $TC_HASH"
+
+if [ "${TR_HASH}" != "${TC_HASH}" ]; then
     echo "Checksum mismatched."
-    rm "$MD5_PATH" "${PACKAGE_FILE}"
+    exit 1
 else
     echo "Checksum matched."
 fi
