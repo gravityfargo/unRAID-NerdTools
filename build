@@ -1,0 +1,74 @@
+#!/bin/bash
+##############################################################################
+# Standard functions
+trap ctrl_c INT
+
+clean() {
+    exit_code=$1
+    exit ${exit_code}
+}
+
+ctrl_c() {
+    clean 1
+}
+
+help() {
+    echo "Usage: $0 [OPTION]"
+    echo "-h, --help         Display this help message"
+    echo "--build-docker     Build the docker"
+    echo "--run-docker       Run the docker"
+}
+
+##############################################################################
+# Everything in this block runs in the container
+
+build() {
+    cd source/NerdTools
+    ./pkg_build.sh $1
+}
+
+##############################################################################
+
+main() {
+    while [ -n "${1}" ]; do
+        case "${1}" in
+        "-h" | "--help")
+            help
+            clean 1
+            ;;
+        "-bd" | "--build-docker")
+            docker build . -t gravityfargo/slackwarebuilder:0.0.1
+            clean 0
+            ;;
+        "-rd" | "--run-docker")
+            docker run --rm \
+                -v ./archive:/archive \
+                -v ./source:/source \
+                -v ./plugin:/plugin \
+                gravityfargo/slackwarebuilder:0.0.1
+            clean 0
+            ;;
+        *)
+            help 1
+            ;;
+        esac
+    done
+    clean 0
+}
+
+export DOCKER_BUILDKIT=1
+main "$@"
+
+
+# version=$(date +"%Y.%m.%d")$1
+
+# echo "VERSION: $version"
+
+# echo "${BASH_SOURCE[0]}"
+
+# # CALCULATE MD5
+# md5=($(md5sum ${BASEDIR}/archive/NerdTools-${version}-x86_64-1.txz))
+# echo ${md5}
+
+# sed -i "s/ENTITY version   .*/ENTITY version   \"$version\">"/ "$BASEDIR/plugin/NerdTools.plg"
+# sed -i "s/ENTITY md5       .*/ENTITY md5       \"$md5\">"/ "$BASEDIR/plugin/NerdTools.plg"
