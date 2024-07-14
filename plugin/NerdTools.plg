@@ -1,4 +1,4 @@
-<?xml version='1.0' standalone='yes'?>
+<?xml version="1.0" standalone="yes"?>
 <!DOCTYPE PLUGIN [
     <!ENTITY name "NerdTools">
     <!ENTITY author "gravityfargo">
@@ -12,48 +12,48 @@
     <!ENTITY emhttp "/usr/local/emhttp/plugins/NerdTools">
 ]>
 
-<PLUGIN name="NerdTools" author="gravityfargo" version="&version;" launch="&launch;"
-    pluginURL="&pluginURL;" min="6.11">
+<PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" min="6.11"
+>
 
     <CHANGES>
         ##NerdTools
         ###2024.07.14
         - Removed: nvme-cli-2023.11.25 package added by UnRAID on version 6.12.8
         - Enhanced: clean packages-desc file
-    </CHANGES>
+</CHANGES>
 
     <!-- The 'pre-install' script. -->
     <FILE Run="/usr/bin/php">
         <INLINE>
-            <![CDATA[
-                <?
-                $version = parse_ini_file("/etc/unraid-version");
+<![CDATA[
+<?
+$version = parse_ini_file("/etc/unraid-version");
 
-                if ( version_compare($version['version'],"6.11", "<") )
-                {
-                    echo "**********************************************************************\n";
-                    echo "\n";
-                    echo "NerdTools Requires Unraid version 6.11.0 or greater to run\n";
-                    echo "\n";
-                    echo "**********************************************************************\n";
-                    exit(1);
-                }
-                ?>
-        ]]>
-        </INLINE>
+if ( version_compare($version['version'],"6.11", "<") )
+{
+echo "**********************************************************************\n";
+echo "\n";
+echo "NerdTools Requires Unraid version 6.11.0 or greater to run\n";
+echo "\n";
+echo "**********************************************************************\n";
+exit(1);
+}
+?>
+]]>
+</INLINE>
     </FILE>
 
+    <!-- The 'pre-install' script. -->
     <FILE Run="/bin/bash">
         <INLINE>
             # Remove old 'source' files
-            rm -f $(ls /boot/config/plugins/NerdTools/NerdTools*.txz 2>/dev/null &#124; grep -v
-            '&version;')
-        </INLINE>
+            rm -rf /boot/config/plugins/NerdTools
+</INLINE>
     </FILE>
 
 
     <!--The
-    'install' script.-->
+'install' script.-->
     <FILE Run="/bin/bash" Method="install">
         <INLINE>
             echo ""
@@ -65,27 +65,24 @@
             echo " Version: &version;"
             echo "-----------------------------------------------------------"
             echo ""
-        </INLINE>
+</INLINE>
     </FILE>
 
 
     <FILE Name="/boot/config/plugins/NerdTools/NerdTools-&version;-x86_64-1.txz"
-        Run="upgradepkg --install-new --reinstall">
+        Run="upgradepkg --install-new">
         <URL>
             https://raw.githubusercontent.com/gravityfargo/unRAID-NerdTools/main/archive/NerdTools-&version;-x86_64-1.txz</URL>
         <MD5>&md5;</MD5>
     </FILE>
 
-    <!--The
-    'remove' script.-->
     <FILE Run="/bin/bash" Method="remove">
         <INLINE>
-            removepkg &plgPATH;/&plgNAME;.txz
+            removepkg &plgPATH;/*.txz
             rm -rf &emhttp;
-            rm -f &plgPATH;/&plgNAME;.txz
-            removepkg /boot/extra/*_nerdtools.txz 1>/dev/null
-            rm -f /boot/extra/*_nerdtools.txz 1>/dev/null
-            rm -f /boot/config/plugins/NerdTools 1>/dev/null
+            removepkg /boot/extra/*_nerdtools.txz
+            rm -f /boot/extra/*_nerdtools.txz
+            rm -f /boot/config/plugins/NerdTools
             echo ""
             echo "-----------------------------------------------------------"
             echo " NerdTools has been removed."
@@ -94,7 +91,7 @@
             echo " Version: &version;"
             echo "-----------------------------------------------------------"
             echo ""
-        </INLINE>
+</INLINE>
     </FILE>
 
 </PLUGIN>
