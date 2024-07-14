@@ -6,7 +6,7 @@
     <!ENTITY md5 "0a88c4864880e48d472bb63d4e56d4d4">
     <!ENTITY launch "Settings/NerdTools">
     <!ENTITY github "gravityfargo/unRAID-NerdTools">
-    <!ENTITY pluginURL "https://raw.githubusercontent.com/gravityfargo/unRAID-NerdTools/main/plugin/NerdTools.plg">
+    <!ENTITY pluginURL "https://github.com/gravityfargo/unRAID-NerdTools/raw/main/plugin/NerdTools.plg">
     <!ENTITY plgPATH "/boot/config/plugins/NerdTools">
     <!ENTITY plgNAME "NerdTools-&version;-x86_64-1">
     <!ENTITY emhttp "/usr/local/emhttp/plugins/NerdTools">
@@ -70,9 +70,9 @@ exit(1);
 
 
     <FILE Name="/boot/config/plugins/NerdTools/NerdTools-&version;-x86_64-1.txz"
-        Run="upgradepkg --install-new">
+        Run="upgradepkg --install-new --reinstall">
         <URL>
-            https://raw.githubusercontent.com/gravityfargo/unRAID-NerdTools/main/archive/NerdTools-&version;-x86_64-1.txz</URL>
+            https://github.com/gravityfargo/unRAID-NerdTools/raw/main/archive/NerdTools-&version;-x86_64-1.txz</URL>
         <MD5>&md5;</MD5>
     </FILE>
 
