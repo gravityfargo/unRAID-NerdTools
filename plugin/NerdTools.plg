@@ -69,10 +69,8 @@ exit(1);
     </FILE>
 
 
-    <FILE Name="/boot/config/plugins/NerdTools/NerdTools-&version;-x86_64-1.txz"
-        Run="upgradepkg --install-new --reinstall">
-        <URL>
-            https://github.com/gravityfargo/unRAID-NerdTools/raw/main/archive/NerdTools-&version;-x86_64-1.txz</URL>
+    <FILE Name="/boot/config/plugins/NerdTools/NerdTools-&version;-x86_64-1.txz" Run="upgradepkg --install-new --reinstall">
+        <URL>https://raw.githubusercontent.com/gravityfargo/unRAID-NerdTools/main/archive/NerdTools-&version;-x86_64-1.txz</URL>
         <MD5>&md5;</MD5>
     </FILE>
 
