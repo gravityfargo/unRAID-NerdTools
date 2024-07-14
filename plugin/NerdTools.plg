@@ -12,8 +12,7 @@
     <!ENTITY emhttp "/usr/local/emhttp/plugins/&name;">
 ]>
 
-<PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;"
-    pluginURL="&pluginURL;" min="6.11">
+<PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" min="6.11">
 
     <CHANGES>
         ###2024.07.14
@@ -242,29 +241,27 @@
         - Plugin based on NerdPack of dmacias72
         - Cleaned code and deleted packages unused that are include on UnRAID 6.11
         - New system for install packages
-
     </CHANGES>
 
     <!-- The 'pre-install' script. -->
     <FILE Run="/usr/bin/php">
         <INLINE>
-      <![CDATA[
-<?
-  $version = parse_ini_file("/etc/unraid-version");
-  
-  if ( version_compare($version['version'],"6.11", "<") )
-  {
-    echo "**********************************************************************\n";
-    echo "\n";
-    echo "NerdTools Requires Unraid version 6.11.0 or greater to run\n";
-    echo "\n";
-    echo "**********************************************************************\n";
-    exit(1);
-  }
-	
-?>
-]]>
-    </INLINE>
+            <![CDATA[
+                <?
+                    $version = parse_ini_file("/etc/unraid-version");
+                    
+                    if ( version_compare($version['version'],"6.11", "<") )
+                    {
+                        echo "**********************************************************************\n";
+                        echo "\n";
+                        echo "NerdTools Requires Unraid version 6.11.0 or greater to run\n";
+                        echo "\n";
+                        echo "**********************************************************************\n";
+                        exit(1);
+                    }
+                ?>
+            ]]>
+        </INLINE>
     </FILE>
 
     <FILE Run="/bin/bash">
@@ -276,12 +273,9 @@
     </FILE>
 
 
-    <!--
-The 'install' script.
--->
+    <!-- The 'install' script. -->
     <FILE Run="/bin/bash" Method="install">
         <INLINE>
-
             echo ""
             echo "-----------------------------------------------------------"
             echo " &name; has been installed."
@@ -302,9 +296,7 @@ The 'install' script.
         <MD5>&md5;</MD5>
     </FILE>
 
-    <!--
-The 'remove' script.
--->
+    <!-- The 'remove' script. -->
     <FILE Run="/bin/bash" Method="remove">
         <INLINE>
 
