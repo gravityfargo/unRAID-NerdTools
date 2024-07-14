@@ -12,7 +12,7 @@ if (!is_dir($pkg_extra_path))
     
 
 $pkg_desc = 'https://raw.githubusercontent.com/gravityfargo/unRAID-NerdTools/main/packages/packages-desc';
-$pkg_repo = "https://api.github.com/repos/gravityfargo/unRAID-NerdTools/contents/packages/pkgs";
+$pkg_repo = "https://api.github.com/repos/gravityfargo/unRAID-NerdTools/contents/packages";
 $pkg_depends = 'https://raw.githubusercontent.com/gravityfargo/unRAID-NerdTools/main/packages/packages-depends';
 
 $desc_file    = $pkg_path.'packages-desc';

@@ -1,7 +1,0 @@
-{
-    "neofetch": {
-        "checksum": "06ec12e87be31c238a224784b61bc588",
-        "package_url": "http://mirrors.slackware.com/slackware/slackware64-current/slackware64/ap/neofetch-20211210_ccd5d9f5-noarch-1.txz",
-        "desc": "neofetch is a script similar to screenfetch. This script can be used to generate any information about your system, it will auto-detect your system and print it to the terminal next to an image, a distro logo or an ASCII art of your choice."
-    }
-}

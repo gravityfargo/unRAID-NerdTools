@@ -1,0 +1,15 @@
+{
+	"borgbackup": "python3,python-setuptools,llfuse,msgpack-python,python-packaging",
+	"expect": "tcl",
+	"gnupg2": "npth",
+	"iotop": "python2",
+	"irssi": "utf8proc",
+	"jdupes": "libjodycode",
+	"mediainfo": "libzen,libmediainfo",
+	"nmap": "libnl",
+	"plocate": "liburing",
+	"python3": "python-pip,python-setuptools",
+	"rar2fs": "unrar",
+	"vim": "libsodium",
+	"wget2": "gpgme,libassuan"
+}
